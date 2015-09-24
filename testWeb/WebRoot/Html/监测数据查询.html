@@ -1,0 +1,1019 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0031)http://www.hzau.edu.cn/2014/ch/ -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+
+  <title>新疆跨境河流水生生态及鱼类资源数据库系统</title>
+      <link href="css/global.css" rel="stylesheet" type="text/css" />
+      <link href="css/nav.css" rel="stylesheet" type="text/css" />
+<link href="css/font.css" rel="stylesheet" type="text/css" /> 
+<link href="css/resultdiv.css" rel="stylesheet" type="text/css"/>
+  <!--[if IE 6]>
+  <link href="./style/ie6.css" type="text/css" rel="stylesheet" />
+  <script src="./js/DD_belatedPNG_0.0.8a-min.js"></script>
+  <script>
+          DD_belatedPNG.fix('img, .sprite, .contact_field, .contact_question, a.ui-dialog-titlebar-close, #bgeffect, #header ,#logo ');
+        </script>
+  <![endif]-->
+
+  <!--[if IE 7]>
+  <link rel="stylesheet" href="./style/ie7.css" />
+  <script src="../js/html5.js"></script>
+  <![endif]-->
+  <script language=JavaScript type=text/javascript>
+			 
+            function show_whomenu(who3) {
+                for (var i = 0; i < 4; i++) { document.getElementById("a_" + i).style.display = "none"; }
+                for (var i = 0; i < 4; i++) { document.getElementById("menu_" + i).className = "s1"; }
+                document.getElementById("menu_" + who3).className = "s2";
+                document.getElementById("a_" + who3).style.display = "block";
+            }	
+var color_picker_div=false;
+var _table=false;
+var MSIE = navigator.userAgent.indexOf('MSIE')>=0?true:false;
+var navigatorVersion = navigator.appVersion.replace(/.*?MSIE (\d\.\d).*/g,'$1')/1;
+function showColorPicker(inputObj)
+	{
+		if(!color_picker_div){
+			color_picker_div = document.createElement('DIV');
+			color_picker_div.id = 'dhtmlgoodies_colorPicker';
+			color_picker_div.style.display='none';
+			<!--标题栏-->
+			createColorPickerTopRow(color_picker_div);
+			<!--填充table-->
+			var contentDiv = document.createElement('DIV'); 
+			contentDiv.id = 'color_picker_content';
+			contentDiv.style.height="100px";
+			contentDiv.style.overflow="auto";
+			color_picker_div.appendChild(contentDiv);
+			init_table(contentDiv);
+			
+			document.body.appendChild(color_picker_div);
+		}		
+		if(color_picker_div.style.display=='none' )color_picker_div.style.display='block'; else color_picker_div.style.display='none';		
+		color_picker_div.style.left = colorPickerGetLeftPos(document.getElementById('content')) + 'px';
+		color_picker_div.style.top = colorPickerGetTopPos(document.getElementById('content')) + document.getElementById('content').offsetHeight - 446 + 'px';
+		color_picker_active_input = inputObj;				
+}
+
+<!--标题栏-->
+function createColorPickerTopRow(inputObj){
+		var tabs = '检索结果';
+		var tabWidths = [37,90,70];
+		var div = document.createElement('DIV');
+		div.className='colorPicker_topRow';
+	
+		inputObj.appendChild(div);	
+		var currentWidth = 0;
+			
+			var tabDiv = document.createElement('DIV');
+			tabDiv.onselectstart = cancelColorPickerEvent;
+			tabDiv.ondragstart = cancelColorPickerEvent;
+			suffix = 'active';
+			color_picker_active_tab = this;
+
+			
+			tabDiv.id = 'colorPickerTab';
+			tabDiv.onclick = showHideColorOptions;
+			tabDiv.style.zIndex = 50;
+			tabDiv.style.left = currentWidth + 'px';
+			tabDiv.style.position = 'absolute';
+			tabDiv.className='colorPickerTab_' + suffix;
+			var tabSpan = document.createElement('SPAN');
+			tabSpan.innerHTML = tabs;
+			tabDiv.appendChild(tabSpan);
+			var tabImg = document.createElement('IMG');
+			tabImg.src = "images/tab_right_" + suffix + ".gif";
+			tabDiv.appendChild(tabImg);
+			if(navigatorVersion<6 && MSIE){	/* Lower IE version fix */
+				tabSpan.style.position = 'relative';
+				tabImg.style.position = 'relative';
+				tabImg.style.left = '-3px';		
+				tabDiv.style.cursor = 'hand';	
+			}			
+			div.appendChild(tabDiv);
+			currentWidth = currentWidth + tabWidths[0];
+		
+		var closeButton = document.createElement('DIV');
+		closeButton.className='colorPickerCloseButton';
+		closeButton.innerHTML = 'x';
+		closeButton.onclick = closeColorPicker;
+		closeButton.onmouseover = toggleCloseButton;
+		closeButton.onmouseout = toggleOffCloseButton;
+		div.appendChild(closeButton);
+		
+	}
+	function closeColorPicker()
+	{
+		color_picker_div.style.display='none';
+	}
+	function cancelColorPickerEvent(){
+		return false;
+	}
+	function showHideColorOptions()
+	{
+		var parentNode = this.parentNode;
+		var subDiv = parentNode.getElementsByTagName('DIV')[0];
+		counter=0;		
+		var contentDiv = document.getElementById('color_picker_content').getElementsByTagName('DIV')[0];
+		do{			
+			if(subDiv.tagName=='DIV' && subDiv.className!='colorPickerCloseButton'){
+				if(subDiv==this){
+					this.className='colorPickerTab_active';
+					this.style.zIndex = 50;
+					var img = this.getElementsByTagName('IMG')[0];
+					img.src = "images/tab_right_active.gif"
+					img.src = img.src.replace(/inactive/,'active');							
+					contentDiv.style.display='block';
+					self.status = counter;					
+				}else{
+					subDiv.className = 'colorPickerTab_inactive';	
+					var img = subDiv.getElementsByTagName('IMG')[0];
+					img.src = "images/tab_right_inactive.gif"
+					self.status = img.src;
+					subDiv.style.zIndex = 10 - counter;
+					contentDiv.style.display='none';
+				}
+				counter++;
+			}
+			subDiv = subDiv.nextSibling;
+			contentDiv = contentDiv.nextSibling;
+		}while(subDiv);
+		
+		document.getElementById('colorPicker_statusBarTxt').innerHTML = ' ';
+
+
+	}
+
+	function toggleCloseButton()
+	{
+		this.style.color='#FFF';
+		this.style.backgroundColor = '#317082';	
+	}
+	
+	function toggleOffCloseButton()
+	{
+		this.style.color='';
+		this.style.backgroundColor = '';			
+		
+	}
+	
+	function colorPickerGetTopPos(inputObj)
+	{
+		
+	  var returnValue = inputObj.offsetTop;
+	  while((inputObj = inputObj.offsetParent) != null){
+	  	returnValue += inputObj.offsetTop;
+	  }
+	  return returnValue;
+	}
+	
+	function colorPickerGetLeftPos(inputObj)
+	{
+	  var returnValue = inputObj.offsetLeft;
+	  while((inputObj = inputObj.offsetParent) != null)returnValue += inputObj.offsetLeft;
+	  return returnValue;
+	}
+	/**/
+	function init_table(inputObj){
+		if(!_table){
+			var _table=document.createElement("table");
+			var _tbody=document.createElement("tbody");
+			_table.style.display='none';
+			//_table.id='result_table';
+			_table.appendChild(_tbody);
+			inputObj.appendChild(_tbody);
+			var row;
+            for (var i = 1; i < 10; i++) {
+                row = document.createElement("tr");
+                row.id = i;
+                var cell;
+                for (var j = 1; j < 6; j++) {
+                    cell = document.createElement("td");
+                    cell.id = i + "/" + j;
+                    cell.appendChild(document.createTextNode("第" + cell.id + "列"));
+                    row.appendChild(cell);
+                }
+                _tbody.appendChild(row);
+            }
+		}
+	}
+			
+        </script>
+  <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+</head>
+<body onload="show_small_map()">
+
+  <div id="bgeffect">    
+  	<div id="layout">
+    <!-- 头部开始-->
+    	<div id="header">
+  		<div id="logo" onclick="location.href=&#39;./&#39;"></div>
+  		<div id="loginStatus">
+    		<a href="#">登陆</a> | <a href="#">注册</a> | <a href="#">帮助</a> |
+  		</div>
+        <div id="search">
+            <form id="cse-search-box" action="http://www.google.com/cse">
+              <input type="hidden" name="cx" value="008612931508023110545:jzxwx8vnj6e">
+              <input type="hidden" name="ie" value="UTF-8">
+              <input type="text" id="s" name="q" class="swap_value">
+              <input type="image" src="images/btn_search_box.png" width="27" height="24" id="go" alt="Search" title="Search">
+            </form>
+          </div>
+      </div>
+    <!--头部结束-->
+    <!--导航目录开始-->
+   		<ul id="nav">
+      <li class="nosub">
+        <a href="homePage.html" class="drop">主&nbsp;&nbsp;页</a>
+      </li>
+      <li>
+      <a href="早期资源信息管理.html" class="drop">早期资源信息管理</a>
+        <div class="dropdown_1column">
+          <div class="col_1">
+          <ul class="simple">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>    
+          </ul>
+        </div>
+      </div>
+      </li>
+    <li>
+      <a href="监测数据查询.html" class="drop">监测数据查询</a>
+        <div class="dropdown_2columns">
+          <div class="col_2">
+          <ul class="simple">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+          </ul>
+        </div>
+      </div>
+    </li>
+    
+    <li>
+      <a href="水生生态及鱼类资源名录检索.html" class="drop">水生生态及鱼类资源名录检索</a>
+      <div class="dropdown_1column">
+        <div class="col_1">
+          <ul class="simple">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </li>
+    
+    <li>
+      <a href="#" class="drop">遗传多样性</a>
+        <div class="dropdown_1column">
+          <div class="col_1">
+          <ul class="simple">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </li>
+    
+    <li>
+      <a href="#" class="drop">数据管理与上传</a>
+        <div class="dropdown_1column">
+          <div class="col_1">
+          <ul class="simple">
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">6</a></li>
+          </ul>
+        </div>
+      </div>
+      
+    </li>
+    
+    </ul>
+    <!--导航目录结束-->
+    <!--主体开始-->
+      <div id="maintop"></div>
+      <div id="ma_tc"></div>
+      <div id="mainarea" >
+      <div id="left" style="width:744px;height:auto;float:left;">
+        <div id="left_up" style="width:744px;height:auto;float:left;">
+        	<div id="slide_left">
+          <div class="block noBg" >
+          	<div style="height:28px;">
+            	<p >检测地点：
+                <select name="select_1" size="1" style="float:right; ">
+                <option value="1">冲乎尔大桥</option>
+                                    <option value="2">冲乎尔大桥</option>
+                                    <option value="3">冲乎尔大桥</option>
+                                    <option value="4">冲乎尔大桥</option>
+                                    <option value="5">冲乎尔大桥</option>
+                                    <option value="7">所属目</option>
+                                    <option value="6">所属目</option>
+                </select>
+                </p>
+            </div>
+            <div style="width:100%;height:auto;">
+            <div class="caption">
+            	<h3>检测地点基础信息</h3>     
+            </div> 
+            <!--内容-->
+            <div style="height:200px;width:246px; overflow:auto; float:left">
+            	<table style="height:100%;width:246px;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                </table>
+            </div>  
+            </div>    
+          </div>
+          <div class="block" style="height:50%">
+          	<div class="caption">
+            <h3>图片</h3>
+            </div>
+            <div style="height:190px;width:246px; overflow:auto; float:left">
+            	
+            </div>
+          </div>
+        </div>
+        	<div id="content">
+          	<div class="caption">
+          	  <h3>地图</h3>     
+            </div>  
+        <div  id="dituContent" class="google_map" >
+        </div>              	  
+        </div>
+        </div>
+      </div>
+      <div id="right" style="width:auto;height:auto;float:right;">
+     	 <div id="slide_left">
+          <div class="block noBg" >
+            <div style="width:100%;height:261px;">
+            <div class="caption">
+            	<h3>生物学信息</h3>     
+            </div> 
+            <!--内容-->
+            <div style="height:228px;width:246px; overflow:auto; float:left">
+            	<table style="height:100%;width:246px;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                </table>
+            </div>  
+            </div>    
+          </div>
+          <div class="block" style="height:50%">
+          	<div class="caption">
+            <h3>图片</h3>
+            </div>
+            <div style="height:190px;width:246px; overflow:auto; float:left">
+            	
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <script language="javascript" type="text/javascript">			
+			function setTab(name,cursel,n){
+			 for(i=1;i<=n;i++){
+			  var menu=document.getElementById(name+i);
+			  var con=document.getElementById("con_"+name+"_"+i);
+			  menu.className=i==cursel?"hover":"";
+			  con.style.display=i==cursel?"block":"none";
+			 }
+			}			
+			</script>
+      <div class="jianjie" style="background:#FFF; padding-top:5px;  float:left; width:992px;">
+            <div id="lib_Tab1" style="width:744px;float:left;">
+              <!-----------------标签--------------->
+              <div class="lib_Menubox lib_tabborder">
+                <ul>
+                  <li id="one1" onclick="setTab('one',1,5)" class="hover">渔货物</li>
+                  <li id="one2" onclick="setTab('one',2,5)" >浮游动物</li>
+                  <li id="one3" onclick="setTab('one',3,5)">浮游植物</li>
+                  <li id="one4" onclick="setTab('one',4,5)">底栖生物</li>
+                </ul>
+              </div>
+              <!-----------------标签--------------->
+              <div class="lib_Contentbox lib_tabborder" style="overflow:auto; height:100px;width:739px;">
+                <div id="con_one_1">
+                  <table style="TABLE-LAYOUT: fixed;height:100%;width:100%;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="100px" style="WORD-WRAP: break-word">利用js控制table的数据绑定与控制显示</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                </table>
+                </div>
+                <div id="con_one_2" style="display:none; ">
+                  <table style="height:100%;width:100%;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                      <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        
+                </table>
+                </div>
+                <div id="con_one_3" style="display:none; ">
+                  <table style="height:100%;width:100%;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                      <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        
+                </table>
+                </div>
+                <div id="con_one_4" style="display:none; ">
+                  <table style="height:100%;width:100%;" border="1px solid " cellpadding="5PX;" cellspacing="3px;">
+                        <thead bgcolor="#999999" align="center" valign="bottom">
+                        <tr>
+                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        </thead>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                         <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                        	                        <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        <tr>
+                      <td width="auto">ID</td>   
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        <td width="auto">ID</td> 
+                        </tr>
+                        
+                </table>
+                </div>
+              </div>
+            </div>
+            <div style="float:right; width:248px;">
+              	<div class="block noBg" >
+                    <div class="caption">
+                        <h3>查询结果检索</h3>     
+                    </div> 
+                    <!--内容-->
+                    <div style="width:100%;">
+                    <form action="#" name="form1" method="post" enctype="multipart/form-data" target="_blank" style="margin:10px 10px;">
+                    <p>查询结果索引：
+                    <select name="select_1" size="1" style="float:right">
+                    <option value="1">所属目</option>
+                                        <option value="2">所属目</option>
+                                        <option value="3">所属目</option>
+                                        <option value="4">所属目</option>
+                                        <option value="5">所属目</option>
+                                        <option value="7">所属目</option>
+                                        <option value="6">所属目</option>
+                    </select>
+                    </p>
+                    <p>&nbsp; </p>
+                    <p>检索词
+                    <input name="textfeild" type="text" size="18;" maxlength="64"; style="float:right"/>
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>
+                        <input type="button" name="button" value="查  询" onclick="showColorPicker(this)" >
+                    </p>
+                  </form>
+            </div> 
+    			</div>
+          	  </div>
+          </div>
+      <!--主题结束-->
+      <div id="ma_bc"></div>    
+    <!--footer开始-->
+      	<div id="footer">
+      <p> 中国·湖北·武汉 南湖狮子山街一号430070 Tel:+86-27-87282027 Fax:+86-27-87384670&nbsp;<br>
+      CopyRight©2001-2014 华中农业大学版权所有&nbsp;鄂ICP备13013419号</p>
+    </div>
+    <!--footer结束-->
+
+    <script type="text/javascript">
+	$.each($('#subnav li'),function(){
+		if ($(this).find('a').attr('href')=='./') {
+			$(this).addClass('select')
+		}
+	})
+	</script>
+</div>
+</body>
+<script type="text/javascript">
+    //创建和初始化地图函数：
+    function initMap(){
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+    }
+    
+    //创建地图函数：
+    function createMap(){
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(116.395645,39.929986);//定义一个中心点坐标
+        map.centerAndZoom(point,12);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
+    }
+    
+    //地图事件设置函数：
+    function setMapEvent(){
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
+    }
+    
+    //地图控件添加函数：
+    function addMapControl(){
+        //向地图中添加缩放控件
+	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+	map.addControl(ctrl_nav);
+        //向地图中添加缩略图控件
+	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
+	map.addControl(ctrl_ove);
+        //向地图中添加比例尺控件
+	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+	map.addControl(ctrl_sca);
+    }
+    
+    
+    initMap();//创建和初始化地图
+</script>
+</html>

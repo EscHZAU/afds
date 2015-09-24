@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+          			  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           			  http://www.springframework.org/schema/security
+					  http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+ 	<!--  -->
+ 	<http>
+ 	<!-- 静态资源加载 -->
+ 		<intercept-url pattern = "/js/*.js" filters="none"/>
+ 		
+ 		<intercept-url pattern = "/js/openLayers/*.js" filters="none"/>
+ 		<intercept-url pattern = "/js/openLayers/theme/default/*.css" filters="none"/>
+ 		<intercept-url pattern = "/js/openLayers/img/*.png" filters="none"/>
+ 		<intercept-url pattern = "/js/openLayers/img/*.gif" filters="none"/>
+ 		
+ 		<intercept-url pattern = "/js/jQuery/*.js" filters="none"/>
+ 		<intercept-url pattern = "/css/*.css" filters="none"/>
+ 		<intercept-url pattern = "/images/*.png" filters="none"/>
+ 		<intercept-url pattern = "/images/*.jpg" filters="none"/>
+ 		<intercept-url pattern = "/images/*.gif" filters="none"/>
+ 		
+ 		
+ 		
+ 		<intercept-url pattern = "/index.jsp" access = "IS_AUTHENTICATED_ANONYMOUSLY"/>
+ 		
+ 		<intercept-url pattern = "/queryMonitData/*" access = "IS_AUTHENTICATED_ANONYMOUSLY"/>
+ 		<intercept-url pattern = "/queryMonitData/query/*" access = "IS_AUTHENTICATED_ANONYMOUSLY"/>
+ 		
+ 		<intercept-url pattern = "/jsp/login.jsp" access = "IS_AUTHENTICATED_ANONYMOUSLY"/>
+ 		<intercept-url pattern="/**" access="ROLE_USER"/>
+ 		<form-login login-page='/jsp/login.jsp'/>
+ 		<logout/>
+ 	</http>
+ 	
+ 	<!-- add some users for testing -->
+ 	<authentication-manager>
+ 		<authentication-provider>
+ 			<user-service>
+ 				<user name="adminAAA" password="adminAAA" authorities="ROLE_USER,ROLE_ADMIN"/>
+ 				<user name="adminBBB" password="adminBBB" authorities="ROLE_USER"/>
+ 			</user-service>
+ 		</authentication-provider>
+ 	</authentication-manager>
+ 	
+ 	
+ 	
+
+</beans:beans>

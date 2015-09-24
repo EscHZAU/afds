@@ -1,0 +1,106 @@
+body{	font-size:14px;}
+/*a{	color:#595243;}*/
+a{	color:#428bca;}
+/* 字体设置，需要微软雅黑字体的均在此设置*/
+h1,h2,h3,h4,h5,h6,#nav,#subnav,#content p.pictopic,.title{
+		font-family: "微软雅黑","Microsoft yahei",Tahoma,Verdana,Arial,sans-serif;
+			-webkit-font-smoothing: antialiased;
+			-webkit-text-size-adjust: 100%;
+			-ms-text-size-adjust: 100%;
+		
+}
+/* 字体颜色设置*/
+/*华农绿 #458B74*/
+h1,h2{
+	font-size:13px;
+	color:#FFFFFF;
+	font-weight:bold;
+	}
+
+.newlist h3,h4,h5,h6{
+	margin-left:3px;
+	margin-bottom:5px;
+	font-size:12px;
+	color:#000000;
+	font-weight:bold;
+	border-bottom:1px solid #DED8CB;
+}
+
+
+
+#crumb , #crumb a{color:#666;line-height: 100%;}
+/*content 部分内容设置*/
+#content h4{margin-bottom:5px;}
+#content h4 span{	float: right;	font-weight: normal;	color:#ccc;}
+#content h4 span a{color:#ccc;}
+#content p{	text-indent:2em;	line-height:200%;	margin-bottom:10px;}
+#content p strong{	color:#0E9319;}
+#content .block{display: block;height: auto !important;height: auto;border-bottom: dotted 1px #E4E3DE;margin-bottom:15px;clear:both;}
+
+/*表单美化设计*/
+.data td,.data th{	border:1px solid #DED8CB;	padding:10px 10px;}
+.data th{	text-align:center;	font-weight:bold;	color:#0E9319;}
+#content thead th{	text-align:center;}
+.nopadding td,.nopadding th{	padding:0px;	border:0px none;}
+.selected{background:#E2FCD2;}
+.data tr th{background: #F5F2ED;}
+.data tr:nth-child(even) td{background:#fff; }
+.data tr:nth-child(odd) td{background: #ffffee;}
+.even{}
+.odd{}
+
+
+/*content 列表设置*/
+/*#content .list {	padding:10px 20px;}*/
+#content ul{padding-bottom:20px;}
+.list li,
+#content .block ul li{	padding-left:20px;	background:url(../images/dot1.jpg) no-repeat 0 -2px;line-height: 2em;}
+#content .list li{line-height: 1.6em;}
+
+.pic{	padding: 15px 0 0 0;	display: block;	border-width: 0;	overflow: hidden;	height: auto;	border:0px none;	width:700px;}
+.piclist{	float: left;height: auto;margin: 0 20px 0px 0;padding-bottom: 10px;}
+#content p.pictopic{	margin: 11px 0 3px 0;	width: auto;	text-indent:0px;	line-height:100%;}
+.nomargin{	margin:0;}
+#news{	float:left;	width:460px;}
+#news h3{	font-size:14px;	color:#0E9319;	/*text-shadow:1px 1px 1px #D8D4CC;*/	padding-bottom:5px;	margin-bottom:10px;}
+#news h3 span{	float:right;	font-size:12px;	padding-top:2px;}
+#news h3 span a{	color:#595343;}
+#news ul{	padding:0px;}
+#news ul li{	margin-bottom:5px;	background:url(../images/dot1.jpg) no-repeat 0 -4px;}
+#news ul li,#news ul li a{	font-size:13px;	color:#595343;}
+#nhnews{	float:left;	height:auto !important;	height:300px;	min-height:300px;	width:50%;}
+#newsslide{	float:right;	height:auto !important;	height:300px;	min-height:300px;	width:50%;}
+.additional{	float:right;	margin-left:10px;}
+.additional img{	padding:2px;	border:1px solid #D8D4CC;}
+td a{	color:#595343;}
+
+.thumb a{	padding: 3px;	border: 1px solid #D8D4CC;	/*border: 1px solid #000;*/		display: inline-block;}
+.thumb a:hover{	border: 1px solid #0E9319;}
+.pull-right{	float: right!important; margin:5px 0 5px 5px; }
+.pull-left{	float: left!important; margin:5px 5px 5px 0;}
+
+#slide .large{	font-size: 4em; color:#DED8CB; text-align: center;}
+
+
+/*slidebox*/
+div.slideBox{ position:relative; width:700; height:280px; overflow:hidden;-webkit-border-radius: 10px;     	-moz-border-radius: 10px;          border-radius: 10px;}
+div.slideBox ul.items{ position:absolute; float:left; background:none; list-style:none; padding:0px; margin:0px;}
+div.slideBox ul.items li{ float:left; background:none; list-style:none; padding:0px; margin:0px;}
+div.slideBox ul.items li a{ float:left; line-height:normal !important; padding:0px !important; border:none/*For IE.ADD.JENA.201206300844*/;}
+div.slideBox ul.items li a img{width:700px; height:280px; margin:0px !important; padding:0px !important; display:block; border:none/*For IE.ADD.JENA.201206300844*/;}
+div.slideBox div.tips{ position:absolute; bottom:0px; width:100%; height:50px; background-color:#0E9319; overflow:hidden;}
+div.slideBox div.tips div.title{ position:absolute; left:0px; top:0px; height:100%;}
+div.slideBox div.tips div.title a{ color:#FFF; font-size:18px; line-height:50px; margin-left:10px; text-decoration:none;}
+div.slideBox div.tips div.title a:hover{ text-decoration:underline !important;}
+div.slideBox div.tips div.nums{ position:absolute; right:0px; top:0px; height:100%;}
+div.slideBox div.tips div.nums a{ display:inline-block; >float:left/*For IE.ADD.JENA.201206300844*/; width:20px; height:20px; background-color:#FFF; text-indent:-99999px; margin:15px 10px 0px 0px;}
+div.slideBox div.tips div.nums a.active{ background-color:#f60;}
+
+
+/*scenic部分开始*/
+.scenic{	padding-left:1px;}
+.scenic div{margin:10px;	float:left;	text-align:center;	width:133px;	}
+.scenic a{display:inline-block;	overflow:hidden;	border:1px solid #aaa; padding:5px;}
+.scenic a:hover{border:1px solid #f60; padding:5px;}
+
+

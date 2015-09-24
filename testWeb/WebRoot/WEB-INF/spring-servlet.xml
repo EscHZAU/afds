@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <beans xmlns="http://www.springframework.org/schema/beans"  
+     xmlns:context="http://www.springframework.org/schema/context"  
+     xmlns:p="http://www.springframework.org/schema/p"  
+     xmlns:mvc="http://www.springframework.org/schema/mvc"  
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+     xsi:schemaLocation="http://www.springframework.org/schema/beans  
+          http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+          http://www.springframework.org/schema/context  
+          http://www.springframework.org/schema/context/spring-context.xsd  
+          http://www.springframework.org/schema/mvc  
+          http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">  
+        
+
+         <!-- 启动注解驱动的Spring MVC功能，注册请求url和注解POJO类方法的映射-->  
+        <mvc:annotation-driven />
+
+        <!-- 启动包扫描功能，以便注册带有@Controller、@Service、@repository、@Component等注解的类成为spring的bean -->  
+        <context:component-scan base-package="cn.hzau.edu.fishResearch.controller" /> 
+      
+         
+       
+        <!--定义映射-->
+        <!-- 默认映射 beanNameHandlerMapping -->  
+		<bean id="HelloMapping" 
+    		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">  
+    		<property name="mappings">  
+        	<props>  
+            	<prop key="/queryMonitData.do">personalController</prop>
+            	<prop key="/NewFile.do">fileUploadController</prop>
+        	</props>  
+    		</property>  
+		</bean>
+		
+			
+    	<!-- <bean id="exceptionResolver" 
+    	class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    		<property name="exceptionMapping">
+    		<props>
+    			<prop key="">error</prop>
+    		</props>
+    		</property>
+    	</bean>	 -->
+    	
+    	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        	<property name="prefix">
+        		<value>/</value>
+        	</property>  
+        	<property name="suffix">
+        		<value>.jsp</value>
+        	</property>
+        	<!--可为空,方便实现自已的依据扩展名来选择视图解释类的逻辑  -->
+        	<!-- <property name="viewclass" value="org.springframework.web.servlet.view.JstlView"> -->
+        	
+    	</bean>
+    	
+    	<!-- 避免在浏览器端执行Ajax，而后从Controller中返回bean对象给Ajax时所造成的 Error 406 -->
+       
+		<bean id="messageAdapter" 
+			class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+			<property name="messageConverters">
+				<list>
+						<!-- support JSON -->
+					<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+						<property name="supportedMediaTypes">
+							<list>
+								<value>text/html;charset=UTF-8</value>
+								<value>text/json;charset=UTF-8</value>
+								<value>application/json;charset=UTF-8</value>
+							</list>
+						</property>
+					</bean>
+				</list>
+			</property>
+		</bean>
+		<bean id="exceptionMessageAdapter" 
+			class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerExceptionResolver">
+			<property name="messageConverters">
+				<list>
+						<!-- support JSON -->
+					<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+						<property name="supportedMediaTypes">
+							<list>
+								<value>text/html;charset=UTF-8</value>
+								<value>text/json;charset=UTF-8</value>
+								<value>application/json;charset=UTF-8</value>
+							</list>
+						</property>
+					</bean>
+				</list>
+			</property>
+		</bean>        	
+ 	  
+</beans>  

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+
+<import resource="applicationContext-Hibernate3.xml"/>
+
+	<context:component-scan base-package="cn.hzau.edu.fishResearch.services"/> 
+	<context:component-scan base-package="cn.hzau.edu.fishResearch.DAO"/>
+	<context:component-scan base-package="cn.hzau.edu.fishResearch.domain"/>
+	
+	
+	<bean id="IMonitDataDAOImpl" class="cn.hzau.edu.fishResearch.DAO.impl.IMonitDataDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="ICatchFishDAOImpl" class="cn.hzau.edu.fishResearch.DAO.impl.ICatchFishDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="IBioInfoDAOImpl" class="cn.hzau.edu.fishResearch.DAO.impl.IBioInfoDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<constructor-arg index="0">
+			<value>cn.hzau.edu.fishResearch.domain.BaseBen</value>
+		</constructor-arg>
+		<constructor-arg index = "1">
+			<value>cn.hzau.edu.fishResearch.domain.BaseFish</value>
+		</constructor-arg>
+		<constructor-arg index = "2">
+			<value>cn.hzau.edu.fishResearch.domain.BasePhy</value>
+		</constructor-arg>
+		<constructor-arg index = "3">
+			<value>cn.hzau.edu.fishResearch.domain.BaseZooplan</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="IMonitHydroDAOImpl" class="cn.hzau.edu.fishResearch.DAO.impl.IMonitHydroDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		<constructor-arg index="0">
+		<value>cn.hzau.edu.fishResearch.domain.MonitBen</value>
+		</constructor-arg>
+		<constructor-arg index="1">
+		<value>cn.hzau.edu.fishResearch.domain.MonitPhy</value>
+		</constructor-arg>
+		<constructor-arg index="2">
+		<value>cn.hzau.edu.fishResearch.domain.MonitZooplan</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="IUserAccountDAOImpl" class="cn.hzau.edu.fishResearch.DAO.impl.IUserAccountDAOImpl">
+		<property name = "sessionFactory" ref = "sessionFactory"></property>
+		<constructor-arg index="0">
+			<value>
+				cn.hzau.edu.fishResearch.domain.SyUserInfo
+			</value>
+		</constructor-arg>
+	</bean>
+	<!--  
+	<bean id="MonitDataService" class="cn.hzau.edu.fishResearch.services.MonitDataService">
+		
+	</bean> -->
+	
+</beans>
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name = "testWeb" default = "dist" basedir = ".">
+	<property name = "build.dir" value = "build" description = "输出目录"/>
+	<property name = "build.web.dir" value = "WebRoot/WEB-INF" description = "Web配置输出目录"/>
+	<property name = "build.web.class.dir" value = "${build.web.dir}/classes" description = "Web类输出目录"/>
+	<property name = "build.web.lib.dir" value = "${build.web.dir}/lib" description = "Web引用jar输出目录"/>
+	<property name = "src.dir" value = "src" description = "源代码目录"/>
+	<property name = "WebRoot.dir" value = "${basedir}/WebRoot"/>
+	<property name = "lib.dir" value = "${webRoot.dir}/WEB-INF/lib"/>
+	
+	<property name = "encoding" value = "utf-8" description = "文件编码"/>
+ 	
+ 	
+ <path id = "project.classpath">
+ 	<fileset dir = "${lib.dir}">
+ 		<include name = "*.jar"/>
+ 	</fileset>
+ 	<pathelement path = "${basedir}/WebRoot/WEB-INF/lib"/>
+ </path>
+
+<target name = "init">
+</target>
+ 
+<target name = "compile" depends = "init">
+	<javac destdir = "${build.web.class.dir}" source = "1.6" target = "1.6" debug = "on"
+			deprecation = "false" optimize = "false" failonerror = "true" srcdir = "${src.dir}">
+			<compilerarg line = "-encoding UTF-8"/>
+			<classpath refid = "project.classpath"></classpath>
+	</javac>
+	
+	
+	<copy todir = "${build.web.class.dir}">
+		<!-- copy the non-jave resources in src.dir -->
+		<filest dir = "${src.dir}" excludes = "**/*.java">
+		</filest>
+	</copy>
+	
+	<copy todir="${build.dir}">
+		<filest dir = "${WebRoot.dir}" excludes = "**/*.class">
+		</filest>
+	</copy>
+
+</target>
+
+
+<target name = "main" depends = "init,compile"/>
+<target name = "dist" depends = "main" description = "将工程打包-war">
+	<war destfile = "${build.dir}/${ant.project.name}.war" basedir = "${build.dir}" webxml = "${build.web.dir}/web.xml"/>
+</target>
+
+
+</project>

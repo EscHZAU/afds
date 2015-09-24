@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- <bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="url"
+			value="jdbc:sqlserver://localhost:1433;DatabaseName=FishResearch">
+		</property>
+		<property name="username" value="sa"></property>
+		<property name="password" value="sa"></property>
+	</bean> -->
+	<bean id="dataSource"  class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    <property name="driverClass">
+      <value>com.microsoft.sqlserver.jdbc.SQLServerDriver</value>
+    </property>
+    <property name="jdbcUrl">
+      <value>jdbc:sqlserver://localhost:1433;DatabaseName=FishResearch</value>
+    </property>
+    <property name="user">
+      <value>sa</value>
+    </property>
+    <property name="password">
+      <value>sa</value>
+      </property>
+  </bean>
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+     		<value>
+       hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+       hibernate.hbm2dll.auto=update
+       hibernate.show_sql=true
+       hibernate.format_sql=true
+     		</value>
+     	</property>
+		<property name="mappingDirectoryLocations">
+			<list>
+				<value>classpath:cn/hzau/edu/fishResearch/domain/</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- TransactionManager of hibernate3-->
+	
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+
+
+</beans>

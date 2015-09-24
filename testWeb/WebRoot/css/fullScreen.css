@@ -1,0 +1,38 @@
+@CHARSET "UTF-8";
+/*NewFile.JSP*/
+/* #returnLast {
+	
+	height:50px;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	margin-bottom:-50px;
+	position:relative;
+	z-index:2001;
+	float:left;
+} */
+
+#spatialToolBar{
+	height:50px;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	margin-bottom:-50px;
+	position:relative;
+	z-index:2001;
+	float:left;	
+}
+
+#returnButton {
+	margin-left:50px;
+	cursor:pointer;
+	text-align:center;
+}
+
+
+#map_element{
+	position:relative;
+	float:left;
+	width:100%;
+	text-align:center;
+	margin:0 auto;
+	z-index:9;
+	}

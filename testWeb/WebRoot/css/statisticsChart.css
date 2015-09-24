@@ -1,0 +1,70 @@
+@CHARSET "GB2312";
+#statisticsChart {
+	position:relative;
+	float:left;
+	width:250px;
+}
+
+#statisticsChart_Select {
+	position:relative;
+	float:left;
+	width:100%;
+	left:2px;
+	
+}
+
+#statisticsChart_Select td{
+	/* padding-left: 5px; */
+	padding-right: 5px;
+	/* padding-top: 15px; */
+	padding-bottom: 15px;
+/* 	border-top:1px solid #00F; */
+	align="center"; 
+	valign="middle";
+	
+}
+
+#monitSiteSelect {
+	width:250px;
+	
+}
+
+
+#addSeries {
+	margin-right:3px;
+	float:left;
+	cursor:pointer;
+}
+
+#toolbar {
+	background-color:#E6E6FA;
+}
+
+#map_element_statisticsChart {
+	position:relative;
+	float:left;
+	width:720px;
+	height:500px;
+	text-align:center;
+	margin:0 auto;
+	z-index:100;
+}
+
+#content_statisticsChart {
+	float: left;
+	height:auto !important; 
+	min-height: 500px; 
+	padding:0px; 
+	width: 720px; 
+	margin-left:15px;
+	margin-right:5px;
+	margin-bottom:10px;
+	border:3px solid #CCC; }
+	
+
+#commitButton_Draw {
+	folat:left;
+	width:100px;
+}
+
+
